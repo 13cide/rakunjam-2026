@@ -47,11 +47,18 @@ namespace AzizStuff
                 if (wave == null || wave.entries == null) continue;
                 for (int e = 0; e < wave.entries.Length; e++)
                 {
-                    var prefab = wave.entries[e].enemyPrefab;
-                    if (prefab == null || _pools.ContainsKey(prefab)) continue;
-                    _pools[prefab] = CreatePool(prefab);
+                    var types = wave.entries[e].weightedTypes;
+                    if (types == null) continue;
+                    for (int t = 0; t < types.Length; t++)
+                        EnsurePool(types[t].prefab);
                 }
             }
+        }
+
+        void EnsurePool(GameObject prefab)
+        {
+            if (prefab == null || _pools.ContainsKey(prefab)) return;
+            _pools[prefab] = CreatePool(prefab);
         }
 
         IObjectPool<GameObject> CreatePool(GameObject prefab)
@@ -110,7 +117,7 @@ namespace AzizStuff
             for (int i = 0; i < wave.entries.Length; i++)
             {
                 var entry = wave.entries[i];
-                if (entry.enemyPrefab == null || entry.count <= 0 || entry.spawnsPerMinute <= 0f) continue;
+                if (!HasAnyPrefab(entry) || entry.count <= 0 || entry.spawnsPerMinute <= 0f) continue;
                 running++;
                 StartCoroutine(SpawnEntry(entry, () => running--));
             }
@@ -137,7 +144,8 @@ namespace AzizStuff
                 for (int i = 0; i < groupSize; i++)
                 {
                     float offset = halfSpreadRad > 0f ? URandom.Range(-halfSpreadRad, halfSpreadRad) : 0f;
-                    Spawn(entry.enemyPrefab, centerAngle + offset);
+                    var prefab = PickPrefab(entry);
+                    if (prefab != null) Spawn(prefab, centerAngle + offset);
                 }
 
                 remaining -= groupSize;
@@ -145,6 +153,34 @@ namespace AzizStuff
             }
 
             onComplete?.Invoke();
+        }
+
+        static bool HasAnyPrefab(WaveDefinition.EnemyEntry entry)
+        {
+            if (entry.weightedTypes == null) return false;
+            for (int i = 0; i < entry.weightedTypes.Length; i++)
+                if (entry.weightedTypes[i].prefab != null && entry.weightedTypes[i].weight > 0f) return true;
+            return false;
+        }
+
+        static GameObject PickPrefab(WaveDefinition.EnemyEntry entry)
+        {
+            var types = entry.weightedTypes;
+            if (types == null || types.Length == 0) return null;
+
+            float totalWeight = 0f;
+            for (int i = 0; i < types.Length; i++)
+                if (types[i].prefab != null && types[i].weight > 0f) totalWeight += types[i].weight;
+            if (totalWeight <= 0f) return null;
+
+            float pick = URandom.value * totalWeight;
+            for (int i = 0; i < types.Length; i++)
+            {
+                if (types[i].prefab == null || types[i].weight <= 0f) continue;
+                pick -= types[i].weight;
+                if (pick <= 0f) return types[i].prefab;
+            }
+            return null;
         }
 
         void Spawn(GameObject prefab, float angleRadians)

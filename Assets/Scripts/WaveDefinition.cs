@@ -7,12 +7,22 @@ namespace AzizStuff
     public class WaveDefinition : ScriptableObject
     {
         [Serializable]
+        public struct WeightedEnemyType
+        {
+            [Tooltip("Enemy prefab variant. Should have an EnemyMover (and optionally a PooledEnemy).")]
+            public GameObject prefab;
+
+            [Tooltip("Relative weight. e.g., weights 7/2/1 across three types spawn ~70%/20%/10%.")]
+            [Min(0f)] public float weight;
+        }
+
+        [Serializable]
         public struct EnemyEntry
         {
-            [Tooltip("Enemy prefab. Should have an EnemyMover (and optionally a PooledEnemy).")]
-            public GameObject enemyPrefab;
+            [Tooltip("Enemy prefab types picked per-spawn by relative weight. Use a single entry for homogeneous waves.")]
+            public WeightedEnemyType[] weightedTypes;
 
-            [Tooltip("Total of this enemy to spawn over the wave.")]
+            [Tooltip("Total of this entry to spawn over the wave (summed across all types).")]
             [Min(0)] public int count;
 
             [Tooltip("Spawn events per minute. Each event emits one group (size given by min/max below). " +
