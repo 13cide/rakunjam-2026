@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using AzizStuff;
 
-[RequireComponent(typeof(Collider2D))]
 public class WeaponHitbox : MonoBehaviour
 {
     [Tooltip("Damage applied to an enemy that walks into the weapon while no swing is active. 0 disables passive damage.")]

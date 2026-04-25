@@ -23,8 +23,8 @@ public class AttackManager : MonoBehaviour
     {
         if (hero != null && hero.Stats != null && weaponController != null)
         {
-            weaponController.SetActiveHitbox(hero.Stats.WeaponSizeLevel);
-            hero.Stats.OnWeaponSizeChanged += weaponController.SetActiveHitbox;
+            weaponController.UpdateWeaponSizeVisuals(hero.Stats.WeaponSizeLevel);
+            hero.Stats.OnWeaponSizeChanged += weaponController.UpdateWeaponSizeVisuals;
         }
     }
 
