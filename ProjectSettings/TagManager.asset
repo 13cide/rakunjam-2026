@@ -43,6 +43,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Battle Area
+    uniqueID: 2385083211
+    locked: 0
+  - name: Hero
+    uniqueID: 3613899047
+    locked: 0
+  - name: Hero part
+    uniqueID: 3174181575
+    locked: 0
   m_RenderingLayers:
   - Default
   m_MigratedRenderPipelines: []

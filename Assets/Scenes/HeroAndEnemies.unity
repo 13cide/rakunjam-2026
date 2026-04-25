@@ -2332,6 +2332,7 @@ GameObject:
   - component: {fileID: 999772388}
   - component: {fileID: 999772387}
   - component: {fileID: 999772390}
+  - component: {fileID: 999772391}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2457,6 +2458,22 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
+--- !u!114 &999772391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 999772386}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38a4cef302790f942babd766349c9b74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AzizStuff.CameraZoom
+  minSize: 3
+  maxSize: 10
+  zoomStep: 0.5
+  zoomSmoothing: 12
 --- !u!1 &1090433089
 GameObject:
   m_ObjectHideFlags: 0
@@ -3215,6 +3232,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe3a10c31a7a6ca4e92d0c153bf1137e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponHitbox
+  passiveDamage: 1
 --- !u!70 &1445014327
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -3297,8 +3315,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1120785721
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
@@ -4091,6 +4109,10 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 1319325565}
+    - target: {fileID: 7117387848258876872, guid: ff06ecd12e33fa6438c442d26b012f72, type: 3}
+      propertyPath: spawnRadius
+      value: 18
+      objectReference: {fileID: 0}
     - target: {fileID: 7782505561019853232, guid: ff06ecd12e33fa6438c442d26b012f72, type: 3}
       propertyPath: m_Name
       value: EnemySpawner

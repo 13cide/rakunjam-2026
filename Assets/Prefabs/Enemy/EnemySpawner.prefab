@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AzizStuff.EnemySpawner
   target: {fileID: 0}
   sequence: {fileID: 11400000, guid: 4d64dd091372ad241ac3bc136756e466, type: 2}
-  spawnRadius: 12
+  spawnRadius: 20
   radiusJitter: 0.5
   defaultPoolCapacity: 128
   maxPoolSize: 1024
