@@ -19,6 +19,15 @@ public class AttackManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        if (hero != null && hero.Stats != null && weaponController != null)
+        {
+            weaponController.SetActiveHitbox(hero.Stats.WeaponSizeLevel);
+            hero.Stats.OnWeaponSizeChanged += weaponController.SetActiveHitbox;
+        }
+    }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))

@@ -13,9 +13,11 @@ public class HeroStats : MonoBehaviour
     public float AttackSpeed => BaseAttackSpeed * AttackSpeedMultiplier;
 
     [Header("Weapon Size")]
-    public float BaseWeaponSize = 1f;
-    public float WeaponSizeMultiplier = 1f;
-    public float WeaponSize => BaseWeaponSize * WeaponSizeMultiplier;
+    [Tooltip("0 = Small, 1 = Medium, 2 = Large")]
+    [Range(0, 2)]
+    public int WeaponSizeLevel = 0;
+
+    public event System.Action<int> OnWeaponSizeChanged;
 
     public void AddDamageBuff(float percent) => DamageMultiplier += percent;
     public void RemoveDamageBuff(float percent) => DamageMultiplier -= percent;
@@ -23,6 +25,12 @@ public class HeroStats : MonoBehaviour
     public void AddAttackSpeedBuff(float percent) => AttackSpeedMultiplier += percent;
     public void RemoveAttackSpeedBuff(float percent) => AttackSpeedMultiplier -= percent;
 
-    public void AddWeaponSizeBuff(float percent) => WeaponSizeMultiplier += percent;
-    public void RemoveWeaponSizeBuff(float percent) => WeaponSizeMultiplier -= percent;
+    public void IncreaseWeaponSize()
+    {
+        if (WeaponSizeLevel < 2)
+        {
+            WeaponSizeLevel++;
+            OnWeaponSizeChanged?.Invoke(WeaponSizeLevel);
+        }
+    }
 }

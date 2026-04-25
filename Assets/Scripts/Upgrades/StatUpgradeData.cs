@@ -27,10 +27,17 @@ public class StatUpgradeData : UpgradeData
                 hero.Stats.AddAttackSpeedBuff(PercentIncrease);
                 break;
             case StatType.WeaponSize:
-                hero.Stats.AddWeaponSizeBuff(PercentIncrease);
+                hero.Stats.IncreaseWeaponSize();
                 break;
         }
         
-        Debug.Log($"Applied Upgrade: {UpgradeName} (Tier {Tier}) - Increased {StatToUpgrade} by {PercentIncrease * 100}%");
+        if (StatToUpgrade == StatType.WeaponSize)
+        {
+            Debug.Log($"Applied Upgrade: {UpgradeName} (Tier {Tier}) - Increased {StatToUpgrade} level.");
+        }
+        else
+        {
+            Debug.Log($"Applied Upgrade: {UpgradeName} (Tier {Tier}) - Increased {StatToUpgrade} by {PercentIncrease * 100}%");
+        }
     }
 }
