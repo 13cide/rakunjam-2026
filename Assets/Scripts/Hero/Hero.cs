@@ -15,6 +15,8 @@ public class Hero : MonoBehaviour, IDamageable
     [SerializeField] private EnemySpawner enemySpawner;
     private bool isDead = false;
 
+    [HideInInspector] public bool IsInvincible = false;
+
     private void Awake()
     {
         Stats = GetComponent<HeroStats>();
@@ -41,6 +43,8 @@ public class Hero : MonoBehaviour, IDamageable
 
     public void TakeDamage(int amount)
     {
+        if (IsInvincible) return;
+        
         currentHealth -= amount;
         CheckHealth();
     }
