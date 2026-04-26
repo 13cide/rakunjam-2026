@@ -177,7 +177,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AzizStuff.EnemyMover
   speed: 0.5
-  attackRange: 0.5
+  attackRange: 0.15
   attackDamage: 2
   attackInterval: 2
   separationRadius: 0.4

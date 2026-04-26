@@ -6,7 +6,10 @@ public abstract class UpgradeData : ScriptableObject
     public string UpgradeName;
     [TextArea]
     public string Description;
-    
+
+    [Tooltip("Icon shown on the upgrade card / button. Drag a Sprite asset here per upgrade SO.")]
+    public Sprite Icon;
+
     [Tooltip("Tier 1, 2, or 3")]
     [Range(1, 3)]
     public int Tier = 1;

@@ -19,7 +19,7 @@ MonoBehaviour:
     - prefab: {fileID: 4707958947098127198, guid: c54948c9181d2c747bbf0134ab176aea, type: 3}
       weight: 2
     count: 100
-    spawnsPerMinute: 25
+    spawnsPerMinute: 20
     groupSizeMin: 1
     groupSizeMax: 10
     angleSpreadDegrees: 45
