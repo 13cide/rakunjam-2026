@@ -2881,18 +2881,50 @@ MonoBehaviour:
   Tier1CostText: {fileID: 1986247588}
   Tier1Upgrades:
   - {fileID: 11400000, guid: 09ed2520c699fcd43ba46908429a389a, type: 2}
+  - {fileID: 11400000, guid: 37b1f3019b8eb4a4aaf465f7d6636edd, type: 2}
+  - {fileID: 11400000, guid: 72ad6ea8fa55dce4c8f96c4508138c87, type: 2}
+  - {fileID: 11400000, guid: 50cb106bb255443469dee9f3b106e39a, type: 2}
+  - {fileID: 11400000, guid: 9ee6150599b15cd42a50c93a8466111a, type: 2}
+  - {fileID: 11400000, guid: 8c330b83941fca44fab8174a86eac161, type: 2}
+  - {fileID: 11400000, guid: 9b2b59967b4bf1b46b711f415ec47625, type: 2}
+  - {fileID: 11400000, guid: b1260d95f6b98314597409a259977abc, type: 2}
+  - {fileID: 11400000, guid: f08bfadb95fedcd4195efc0c11a923e7, type: 2}
+  - {fileID: 11400000, guid: 6ef0f1b4341ea0c4e9c13bbbd79220ad, type: 2}
+  - {fileID: 11400000, guid: b8424dc6c887fff4389afa14b3f452c3, type: 2}
+  - {fileID: 11400000, guid: f1bba2eae8b1f2149b521b1e0bf8dfe7, type: 2}
+  - {fileID: 11400000, guid: 2144a888b71c7824db0d8ef9f77420b5, type: 2}
   - {fileID: 11400000, guid: 57fda9d92cbc4604b80f3a44f56ed9e0, type: 2}
+  - {fileID: 11400000, guid: 5680cb479abc7b844a765be231ebef77, type: 2}
+  - {fileID: 11400000, guid: e5db745ddc7de2347917b8cf5f5a589b, type: 2}
+  - {fileID: 11400000, guid: 0ea53b6743d3ea949a31735d395b2f6d, type: 2}
   - {fileID: 11400000, guid: cc675e8b0e7e32845b7422eb00669b02, type: 2}
   Tier2CostText: {fileID: 1609475726}
   Tier2Upgrades:
   - {fileID: 11400000, guid: 38c2eaf22dcdee943a5e8a974f5f66d5, type: 2}
+  - {fileID: 11400000, guid: a8acfa28ad4370b49a9149ccd3d8252c, type: 2}
+  - {fileID: 11400000, guid: 1cc9bacc15eb04b4abf9fe0e58181351, type: 2}
+  - {fileID: 11400000, guid: 6b5c5349c984a714da8a412e6ac8c168, type: 2}
   - {fileID: 11400000, guid: 2c481ff3832da3043a2b63e19e79cbcf, type: 2}
+  - {fileID: 11400000, guid: 9cbe2f4d02cd4ad4b8b57bab6b106c85, type: 2}
+  - {fileID: 11400000, guid: 83816e68b9f25ba4fb062402534c2946, type: 2}
+  - {fileID: 11400000, guid: 757a00e1e0a95e64795ac5fda6365107, type: 2}
+  - {fileID: 11400000, guid: f08b7517c9ff2a84b9b6c8a737e0d678, type: 2}
+  - {fileID: 11400000, guid: 7202633e4717bd44b94f7ea8e6368f42, type: 2}
+  - {fileID: 11400000, guid: 58de8d1732085f04eaadb2955ab3c721, type: 2}
+  - {fileID: 11400000, guid: 228e2e87b1dc81b4db3236c64ac17826, type: 2}
+  - {fileID: 11400000, guid: 2ea56e197bb7f224f97deed90203dcd3, type: 2}
+  - {fileID: 11400000, guid: f7a601e850b077640ae093b4cbc070c3, type: 2}
   - {fileID: 11400000, guid: 2e523f68e16436b4c8d78fe4c857c66d, type: 2}
+  - {fileID: 11400000, guid: a653ab74629b2864db66e48a6f90eaab, type: 2}
+  - {fileID: 11400000, guid: 30c9e22c0c34503458b81b6887df55c8, type: 2}
+  - {fileID: 11400000, guid: 8c5a18bd0f149c4429fe0c68de340b8c, type: 2}
   Tier3CostText: {fileID: 1606658070}
   Tier3Upgrades:
+  - {fileID: 11400000, guid: a9cf2090a267cd44bafcc9bb38b10185, type: 2}
   - {fileID: 11400000, guid: 9cb654a97647cb34f86b5ed21d1afbd1, type: 2}
-  - {fileID: 11400000, guid: 9cb654a97647cb34f86b5ed21d1afbd1, type: 2}
-  - {fileID: 11400000, guid: 9cb654a97647cb34f86b5ed21d1afbd1, type: 2}
+  - {fileID: 11400000, guid: 05bba13a2791cde45882c28b4eb2a4f9, type: 2}
+  - {fileID: 11400000, guid: 1ff975903e74aac459aede41d40ccd62, type: 2}
+  - {fileID: 11400000, guid: 363b79138ecdef943b2b24d7a9e543c6, type: 2}
   moneyManager: {fileID: 516177792}
   rullete: {fileID: 192633019}
   marketAnimator: {fileID: 1212503405}
@@ -3093,6 +3125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f0de90afff484b48850c43e9fe5d6e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Hero
+  healthText: {fileID: 683280473}
 --- !u!114 &1319325567
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3105,6 +3138,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae5bd681926b6d459d436ad1f3f0311, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HeroStats
+  BaseMaxHealth: 100
+  AdditionalMaxHealth: 0
   BaseDamage: 10
   DamageMultiplier: 1
   BaseAttackSpeed: 1

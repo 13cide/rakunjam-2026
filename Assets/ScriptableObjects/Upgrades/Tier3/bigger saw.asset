@@ -18,4 +18,4 @@ MonoBehaviour:
     bigger'
   Tier: 3
   StatToUpgrade: 2
-  PercentIncrease: 0.1
+  Value: 0.1

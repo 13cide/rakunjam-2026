@@ -18,4 +18,4 @@ MonoBehaviour:
     +5%'
   Tier: 1
   StatToUpgrade: 1
-  PercentIncrease: 0.05
+  Value: 0.05

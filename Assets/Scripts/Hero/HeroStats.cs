@@ -2,6 +2,11 @@ using UnityEngine;
 
 public class HeroStats : MonoBehaviour
 {
+    [Header("Health")]
+    public int BaseMaxHealth = 100;
+    public int AdditionalMaxHealth = 0;
+    public int MaxHealth => BaseMaxHealth + AdditionalMaxHealth;
+
     [Header("Damage")]
     public float BaseDamage = 10f;
     public float DamageMultiplier = 1f; 
@@ -18,12 +23,29 @@ public class HeroStats : MonoBehaviour
     public int WeaponSizeLevel = 0;
 
     public event System.Action<int> OnWeaponSizeChanged;
+    public event System.Action<int> OnMaxHealthChanged;
 
     public void AddDamageBuff(float percent) => DamageMultiplier += percent;
     public void RemoveDamageBuff(float percent) => DamageMultiplier -= percent;
 
     public void AddAttackSpeedBuff(float percent) => AttackSpeedMultiplier += percent;
     public void RemoveAttackSpeedBuff(float percent) => AttackSpeedMultiplier -= percent;
+
+    public void AddMaxHealthBuff(int amount)
+    {
+        int oldMax = MaxHealth;
+        AdditionalMaxHealth += amount;
+        int newMax = MaxHealth;
+        OnMaxHealthChanged?.Invoke(newMax - oldMax);
+    }
+
+    public void RemoveMaxHealthBuff(int amount)
+    {
+        int oldMax = MaxHealth;
+        AdditionalMaxHealth -= amount;
+        int newMax = MaxHealth;
+        OnMaxHealthChanged?.Invoke(newMax - oldMax);
+    }
 
     public void IncreaseWeaponSize()
     {

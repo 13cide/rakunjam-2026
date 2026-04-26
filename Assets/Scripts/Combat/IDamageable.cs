@@ -1,7 +1,7 @@
-namespace AzizStuff
+
+
+public interface IDamageable
 {
-    public interface IDamageable
-    {
-        void TakeDamage(int amount);
-    }
+    void TakeDamage(int amount);
 }
+

@@ -16,6 +16,6 @@ MonoBehaviour:
   Description: 'attack speed
 
     +15%'
-  Tier: 1
+  Tier: 2
   StatToUpgrade: 1
-  PercentIncrease: 0.15
+  Value: 0.15

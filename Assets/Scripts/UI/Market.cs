@@ -17,6 +17,10 @@ public class Market : MonoBehaviour
     [SerializeField] private TMP_Text Tier3CostText;
     [SerializeField] private List<UpgradeData> Tier3Upgrades = new List<UpgradeData>();
 
+    private List<UpgradeData> tier1Pool;
+    private List<UpgradeData> tier2Pool;
+    private List<UpgradeData> tier3Pool;
+
     [Header("References")]
     [SerializeField] private MoneyManager moneyManager;
     [SerializeField] private Rullete rullete;
@@ -43,13 +47,33 @@ public class Market : MonoBehaviour
             TierCosts[tier - 1] = Mathf.RoundToInt(cost * costMultiplier);
             
             List<UpgradeData> sourceList = null;
+            List<UpgradeData> currentPool = null;
             Color tierColor = Color.white;
+
+            if (tier1Pool == null) tier1Pool = new List<UpgradeData>();
+            if (tier2Pool == null) tier2Pool = new List<UpgradeData>();
+            if (tier3Pool == null) tier3Pool = new List<UpgradeData>();
 
             switch (tier)
             {
-                case 1: sourceList = Tier1Upgrades; tierColor = tier1Color; Tier1CostText.text = TierCosts[tier - 1].ToString(); break;
-                case 2: sourceList = Tier2Upgrades; tierColor = tier2Color; Tier2CostText.text = TierCosts[tier - 1].ToString(); break;
-                case 3: sourceList = Tier3Upgrades; tierColor = tier3Color; Tier3CostText.text = TierCosts[tier - 1].ToString(); break;
+                case 1: 
+                    sourceList = Tier1Upgrades; 
+                    currentPool = tier1Pool;
+                    tierColor = tier1Color; 
+                    Tier1CostText.text = TierCosts[tier - 1].ToString(); 
+                    break;
+                case 2: 
+                    sourceList = Tier2Upgrades; 
+                    currentPool = tier2Pool;
+                    tierColor = tier2Color; 
+                    Tier2CostText.text = TierCosts[tier - 1].ToString(); 
+                    break;
+                case 3: 
+                    sourceList = Tier3Upgrades; 
+                    currentPool = tier3Pool;
+                    tierColor = tier3Color; 
+                    Tier3CostText.text = TierCosts[tier - 1].ToString(); 
+                    break;
             }
 
             if (sourceList == null || sourceList.Count == 0)
@@ -59,21 +83,57 @@ public class Market : MonoBehaviour
             }
 
             UpgradeData[] selectedOptions = new UpgradeData[3];
-            List<UpgradeData> tempSource = new List<UpgradeData>(sourceList);
 
-            for (int i = 0; i < 3; i++)
+            if (tier == 3)
             {
-                if (tempSource.Count > 0)
+                HeroStats heroStats = FindObjectOfType<HeroStats>();
+                List<UpgradeData> validTier3Upgrades = new List<UpgradeData>();
+                
+                foreach (var upgrade in Tier3Upgrades)
                 {
-                    int randomIndex = Random.Range(0, tempSource.Count);
-                    selectedOptions[i] = tempSource[randomIndex];
-                    // Remove to ensure unique options if possible
-                    tempSource.RemoveAt(randomIndex);
+                    if (upgrade is StatUpgradeData statUpgrade)
+                    {
+                        if (statUpgrade.StatToUpgrade == StatType.WeaponSize && heroStats != null && heroStats.WeaponSizeLevel >= 2)
+                        {
+                            continue; // Maxed out, don't offer
+                        }
+                    }
+                    validTier3Upgrades.Add(upgrade);
                 }
-                else
+
+                if (validTier3Upgrades.Count == 0)
                 {
-                    // Fallback if there are less than 3 total upgrades in the list
-                    selectedOptions[i] = sourceList[Random.Range(0, sourceList.Count)];
+                    Debug.LogWarning("No valid Tier 3 upgrades available!");
+                    return;
+                }
+
+                List<UpgradeData> tempSource = new List<UpgradeData>(validTier3Upgrades);
+                for (int i = 0; i < 3; i++)
+                {
+                    if (tempSource.Count > 0)
+                    {
+                        int randomIndex = Random.Range(0, tempSource.Count);
+                        selectedOptions[i] = tempSource[randomIndex];
+                        tempSource.RemoveAt(randomIndex);
+                    }
+                    else
+                    {
+                        selectedOptions[i] = validTier3Upgrades[Random.Range(0, validTier3Upgrades.Count)];
+                    }
+                }
+            }
+            else
+            {
+                for (int i = 0; i < 3; i++)
+                {
+                    if (currentPool.Count == 0)
+                    {
+                        RefillPool(currentPool, sourceList);
+                    }
+
+                    int lastIndex = currentPool.Count - 1;
+                    selectedOptions[i] = currentPool[lastIndex];
+                    currentPool.RemoveAt(lastIndex);
                 }
             }
 
@@ -83,6 +143,21 @@ public class Market : MonoBehaviour
                 rulleteAnimator.SetTrigger("StartRullete");
                 marketAnimator.SetTrigger("StartRullete");
             }
+        }
+    }
+
+    private void RefillPool(List<UpgradeData> pool, List<UpgradeData> source)
+    {
+        pool.Clear();
+        pool.AddRange(source);
+        
+        // Shuffle the pool using Fisher-Yates
+        for (int i = 0; i < pool.Count; i++)
+        {
+            UpgradeData temp = pool[i];
+            int randomIndex = Random.Range(i, pool.Count);
+            pool[i] = pool[randomIndex];
+            pool[randomIndex] = temp;
         }
     }
 }
