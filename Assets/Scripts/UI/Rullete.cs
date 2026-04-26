@@ -5,6 +5,8 @@ using TMPro;
 public class Rullete : MonoBehaviour
 {
     [SerializeField] private Image[] optionsBackGround;
+    [Tooltip("Parallel to optionsBackGround / optionsText. Each slot is the icon Image on that option card.")]
+    [SerializeField] private Image[] optionsIcon;
     [SerializeField] private TMP_Text[] optionsText;
     [SerializeField] private UpgradeManager upgradeManager;
     [SerializeField] private Animator rulleteAnimator;
@@ -20,9 +22,17 @@ public class Rullete : MonoBehaviour
             n.color = backgroundcolor;
         }
         for (int i = 0; i < options.Length; i++) {
-            if (optionsText[i] != null && options[i] != null)
+            if (options[i] == null) continue;
+
+            if (optionsText[i] != null)
             {
                 optionsText[i].text = options[i].Description;
+            }
+
+            if (optionsIcon != null && i < optionsIcon.Length && optionsIcon[i] != null)
+            {
+                optionsIcon[i].sprite = options[i].Icon;
+                optionsIcon[i].enabled = options[i].Icon != null;   // hides the slot if an SO has no icon assigned
             }
         }
     }

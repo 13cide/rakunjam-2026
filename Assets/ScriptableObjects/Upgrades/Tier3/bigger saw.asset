@@ -16,6 +16,7 @@ MonoBehaviour:
   Description: 'makes saw
 
     bigger'
+  Icon: {fileID: -3362790549429164741, guid: 33e9684dca562754f8600bc87ee56aaa, type: 3}
   Tier: 3
   StatToUpgrade: 2
   Value: 0.1
