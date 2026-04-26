@@ -180,7 +180,10 @@ MonoBehaviour:
   attackRange: 0.5
   attackDamage: 1
   attackInterval: 1
+  separationRadius: 0.4
+  separationStrength: 3
   visualRoot: {fileID: 2922453160139665856}
+  attackTriggerName: Attack
 --- !u!50 &6273736781487843841
 Rigidbody2D:
   serializedVersion: 5
