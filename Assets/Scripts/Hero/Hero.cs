@@ -59,7 +59,7 @@ public class Hero : MonoBehaviour, IDamageable
     {
         if (healthText != null)
         {
-            healthText.text = $"{currentHealth} / {Stats.MaxHealth}";
+            healthText.text = $"{currentHealth}/{Stats.MaxHealth}";
         }
 
         if (currentHealth <= 0 && !isDead)
