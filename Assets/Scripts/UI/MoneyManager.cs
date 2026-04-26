@@ -5,7 +5,7 @@ public class MoneyManager : MonoBehaviour
 {
     public static MoneyManager Instance { get; private set; }
 
-    [SerializeField] private int money = 100;
+    [SerializeField] private int money = 1000;
     [SerializeField] private TMP_Text moneyText;
 
     private void Awake()

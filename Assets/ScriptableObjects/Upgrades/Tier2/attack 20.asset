@@ -16,6 +16,6 @@ MonoBehaviour:
   Description: 'damage
 
     +20%'
-  Tier: 1
+  Tier: 2
   StatToUpgrade: 0
-  PercentIncrease: 0.2
+  Value: 0.2
